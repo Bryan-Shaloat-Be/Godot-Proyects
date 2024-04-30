@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0i10fbk4fwv"]
+
+[ext_resource type="Texture2D" uid="uid://cbfev2po7m8oo" path="res://arrows.png" id="1_flwip"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2(24, 507)
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("1_flwip")
+action = "move_left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2(160, 561)
+rotation = 3.14159
+scale = Vector2(0.0911123, 0.09)
+texture_normal = ExtResource("1_flwip")
+action = "move_right"
+
+[node name="top" type="TouchScreenButton" parent="."]
+position = Vector2(119, 467)
+rotation = 1.5708
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("1_flwip")
+action = "move_top"
+
+[node name="back" type="TouchScreenButton" parent="."]
+position = Vector2(65, 601)
+rotation = -1.5708
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("1_flwip")
+action = "move_back"

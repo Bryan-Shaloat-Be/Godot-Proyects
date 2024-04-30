@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbrhd6t8oo4pr"]
+
+[ext_resource type="PackedScene" uid="uid://brtabdwipb83b" path="res://player.tscn" id="1_lav2w"]
+[ext_resource type="PackedScene" uid="uid://cpn4uotdjuhl3" path="res://Block.tscn" id="2_laj5f"]
+[ext_resource type="PackedScene" uid="uid://bwvexjjgecvn5" path="res://coin.tscn" id="3_1kfwh"]
+[ext_resource type="PackedScene" uid="uid://n0i10fbk4fwv" path="res://canvas_layer.tscn" id="4_j1im8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dhhe3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_shith"]
+sky_material = SubResource("ProceduralSkyMaterial_dhhe3")
+
+[sub_resource type="Environment" id="Environment_d170e"]
+background_mode = 2
+sky = SubResource("Sky_shith")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pkde"]
+albedo_color = Color(0.407843, 0.623529, 0.462745, 0.929412)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_flemo"]
+material = SubResource("StandardMaterial3D_8pkde")
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_srw5v"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d170e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.389124, 0.564601, -0.727879, 0, 0.790155, 0.612907, 0.921185, -0.238497, 0.307468, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_flemo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_srw5v")
+
+[node name="player" parent="." instance=ExtResource("1_lav2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+
+[node name="Block" parent="." instance=ExtResource("2_laj5f")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 4, -3)
+
+[node name="Block2" parent="." instance=ExtResource("2_laj5f")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.71084, 2.94201, 0.275625)
+
+[node name="Block3" parent="." instance=ExtResource("2_laj5f")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.71084, 2.94201, -3.06535)
+
+[node name="coin" parent="." instance=ExtResource("3_1kfwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
+
+[node name="coin2" parent="." instance=ExtResource("3_1kfwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3)
+
+[node name="coin3" parent="." instance=ExtResource("3_1kfwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -3)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_j1im8")]
